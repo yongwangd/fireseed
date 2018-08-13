@@ -38,5 +38,27 @@ let hub = createHub(db.collection('quotes'));
 hub.stream.subscribe(a => console.log(a));
 
 hub.exists(d => d.content == 'updtedd').then(console.log);
+hub
+  .exists(d => d.content == 'hello')
+  .then(ans => {
+    if (!ans) {
+      return hub.add({
+        content: 'hello'
+      });
+    } else {
+      return ans;
+    }
+  })
+  .then(() => {
+    hub.exists(d => d.content == 'hello').then(ans => {
+      if (!ans) {
+        return hub.add({
+          content: 'hello'
+        });
+      } else {
+        return ans;
+      }
+    });
+  });
 
 // hub.updateById('qmpfCkASLNMIuDncTLPu', {content: 'updatedd'})

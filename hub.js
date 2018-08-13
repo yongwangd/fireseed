@@ -5,7 +5,7 @@ const createHub = ref => {
   let firstFetch = false;
   let _data = [];
 
-  const getAll = () =>
+  const fetch = () =>
     ref.get().then(snap => {
       let array = [];
       snap.forEach(doc => array.push({ _id: doc.id, ...doc.data() }));
@@ -14,13 +14,13 @@ const createHub = ref => {
     });
 
   const stream = Rx.Observable.create(obs =>
-    ref.onSnapshot(() => getAll().then(array => obs.next(array)))
+    ref.onSnapshot(() => fetch().then(array => obs.next(array)))
   );
 
   stream.subscribe(array => _data == array);
 
-  const list = () => Promise.resolve(firstFetch ? _data : getAll());
-  const exists = predFn => list().then(data => R.findIndex(predFn, data) != -1);
+  const list = () => Promise.resolve(firstFetch ? _data : fetch());
+  const exists = predFn => fetch().then(data => R.findIndex(predFn, data) != -1);
   const add = newData => ref.add(newData);
   const removeById = id => ref.doc(id).delete();
   const updateById = (id, patch) => ref.doc(id).update(patch);
