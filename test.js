@@ -2,6 +2,7 @@ const firebase = require('firebase');
 require('firebase/firestore');
 console.log('test start')
 console.log('test start2')
+console.log('test start3')
 
 const createHub = require('./hub');
 
