@@ -1,0 +1,28 @@
+{
+  "name": "fireseed",
+  "version": "1.0.0",
+  "description": "Utils for firestore",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yongwangd/fireseed.git"
+  },
+  "keywords": [
+    "firebase"
+  ],
+  "author": "Yong Wang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yongwangd/fireseed/issues"
+  },
+  "homepage": "https://github.com/yongwangd/fireseed#readme",
+  "dependencies": {
+    "firebase": "^5.3.1",
+    "ramda": "^0.25.0",
+    "rxjs": "^6.2.2",
+    "rxjs-compat": "^6.2.2"
+  }
+}
