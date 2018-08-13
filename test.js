@@ -1,8 +1,5 @@
 const firebase = require('firebase');
 require('firebase/firestore');
-console.log('test start')
-console.log('test start2')
-console.log('test start3')
 
 const createHub = require('./hub');
 
@@ -32,14 +29,14 @@ let quotes = db.collection('quotes');
 // );
 
 // quotes.add({
-//     author:'xiaopeng',
-//     content:'blue lake'
-// })
+//   author: 'David Willson',
+//   content: 'blue lake',
+//   createdAt: firebase.firestore.FieldValue.serverTimestamp()
+// });
 
 let hub = createHub(db.collection('quotes'));
-console.log(hub.list());
-console.log(hub.stream.subscribe(a =>console.log(a)));
+hub.stream.subscribe(a => console.log(a));
 
-console.log(hub.notExists(d => d.content == 'linux rocks'));
+hub.exists(d => d.content == 'updtedd').then(console.log);
 
 // hub.updateById('qmpfCkASLNMIuDncTLPu', {content: 'updatedd'})
