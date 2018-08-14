@@ -21,6 +21,7 @@ const createHub = ref => {
 
   const list = () => Promise.resolve(firstFetch ? _data : fetch());
   const exists = predFn => fetch().then(data => R.findIndex(predFn, data) != -1);
+  const find = predFn => fetch()
   const add = newData => ref.add(newData);
   const removeById = id => ref.doc(id).delete();
   const updateById = (id, patch) => ref.doc(id).update(patch);
