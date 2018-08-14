@@ -1,5 +1,4 @@
-const Rx = require('rxjs/Rx');
-const R = require('ramda');
+const {Observable} = require('rxjs/Rx');
 
 const snapshotToArray = snap => {
   let array = [];
@@ -12,7 +11,7 @@ const collectionApi = ref => {
   const fetchAll = () => ref.get().then(snapshotToArray);
 
   const stream = () =>
-    Rx.Observable.create(obs =>
+    Observable.create(obs =>
       ref.onSnapshot(() => fetchAll().then(array => obs.next(array)))
     );
 

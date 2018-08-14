@@ -21,7 +21,6 @@
   "homepage": "https://github.com/yongwangd/fireseed#readme",
   "dependencies": {
     "firebase": "^5.3.1",
-    "ramda": "^0.25.0",
     "rxjs": "^6.2.2",
     "rxjs-compat": "^6.2.2"
   }
