@@ -1,7 +1,7 @@
 const firebase = require('firebase');
 require('firebase/firestore');
 
-const collectionApi = require('./index');
+const createHub = require('./index');
 
 var config = {
   apiKey: 'AIzaSyCfEkKczf2IVYVpRMkTedr6qKnvrzkmGhI',
@@ -19,7 +19,7 @@ db.settings(settings);
 
 let quotes = db.collection('quotes');
 
-let hub = collectionApi(quotes);
+let hub = createHub(quotes);
 
 hub.fetchAll().then(qs => console.log('fetchAll', qs));
 

@@ -7,7 +7,7 @@ const snapshotToArray = snap => {
   return array;
 };
 
-const collectionApi = ref => {
+const createHub = ref => {
   const fetchAll = () => ref.get().then(snapshotToArray);
 
   const stream = () =>
@@ -55,4 +55,4 @@ const collectionApi = ref => {
   };
 };
 
-module.exports = collectionApi;
+module.exports = createHub;
