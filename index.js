@@ -11,11 +11,17 @@ const snapshotToArray = snap => {
 const collectionApi = ref => {
   const fetchAll = () => ref.get().then(snapshotToArray);
 
+  const stream = () =>
+    Rx.Observable.create(obs =>
+      ref.onSnapshot(() => fetchAll().then(array => obs.next(array)))
+    );
+
   const findById = id =>
     ref
       .doc(id)
       .get()
       .then(snapshotToArray);
+
   const findByProp = prop => {
     let [key, value] = Object.entries(prop)[0];
     return ref
@@ -29,13 +35,16 @@ const collectionApi = ref => {
 
   const add = newData => ref.add(newData).then(docRef => docRef.id);
 
-   const addIfPropNotExists = (newData, prop) => existsByProp(prop).then(exists => exists? 'Record Exists': add(newData))
- 
+  const addIfPropNotExists = (newData, prop) =>
+    existsByProp(prop).then(
+      exists => (exists ? 'Record Exists' : add(newData))
+    );
 
   const deleteById = id => ref.doc(id).delete();
   const updateById = (id, patch) => ref.doc(id).update(patch);
 
   return {
+    stream,
     fetchAll,
     findById,
     findByProp,

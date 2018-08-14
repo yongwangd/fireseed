@@ -1,7 +1,7 @@
 const firebase = require('firebase');
 require('firebase/firestore');
 
-const collectionApi = require('./collectionHub');
+const collectionApi = require('./index');
 
 var config = {
   apiKey: 'AIzaSyCfEkKczf2IVYVpRMkTedr6qKnvrzkmGhI',
@@ -22,6 +22,8 @@ let quotes = db.collection('quotes');
 let hub = collectionApi(quotes);
 
 hub.fetchAll().then(qs => console.log('fetchAll', qs));
+
+hub.stream().subscribe(value => console.log('value from stream', value))
 
 // console.log('find', hub.findByProp('author', 'updatedd'))
 // .then(qs => console.log())
@@ -46,7 +48,6 @@ hub
     },
     { author: 'Jims' }
   )
-  
   .then(a => console.log('adduniq', a));
 
 hub.deleteById('u9JVU1OzBUEmKn37UqeO').then(a => console.log('delete', a));
