@@ -1,6 +1,6 @@
 {
   "name": "fireseed",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utils for firestore",
   "main": "index.js",
   "scripts": {
